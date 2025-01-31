@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class FindDuplicates {
@@ -10,14 +11,15 @@ public class FindDuplicates {
             return null;
         }
         List<Integer> res = new ArrayList<Integer>();
-        for(int i = 0; i< l.size(); i ++){
-            for(int j = i +1; j < l.size();j++){
-                if(l.get(i) == l.get(j) && !res.contains(l.get(i))){
-                  
-                    res.add(l.get(i));
-                }
+        HashMap<Integer,Integer> hold = new HashMap<Integer,Integer>();   
+        for(int i = 0; i < l.size(); i ++){
+            if(hold.containsKey(l.get(i)) && !res.contains(l.get(i))){
+                res.add(l.get(i));
+            }else{
+                hold.put(l.get(i), i);
             }
-        }
+
+        }     
 
         return res;
     }
